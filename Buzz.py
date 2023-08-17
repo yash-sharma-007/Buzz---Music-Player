@@ -15,7 +15,7 @@ text_speech = pt.init()
 voices = text_speech.getProperty('voices')
 text_speech.setProperty('voice', voices[1].id)
 
-
+# Speak command
 def talk(text):
     rate = text_speech.getProperty('rate')
     volume = text_speech.getProperty('volume')
@@ -27,19 +27,19 @@ def talk(text):
     print(text)
     text_speech.runAndWait()
 
-
+# Listen user command
 def listen_speech():
     with sr.Microphone() as mic:
         odo = r.listen(mic)
         txt = r.recognize_google(odo)
     return txt
 
-
+# Add a song
 def add_song(s):
     with open("songs.txt", 'a') as f:
         f.write(s+"\n")
 
-
+# Play song
 def play_song(sng):
     s = f"D:\\SEM 4\\PSC INNOVATIVE\\songs\\{sng}.mp3"
     m.init()
@@ -71,7 +71,7 @@ def play_song(sng):
 
 
 
-
+# Add song to History
 def history(sng):
     with open("history.txt", 'a') as f:
         f.write(sng+",\t\t\t\t")
@@ -79,7 +79,7 @@ def history(sng):
         current_time = datetime.now().strftime('%m/%d/%y %I:%M %p')
         f.write(f"{ current_time } \n")
 
-
+# Play previous song
 def previous_song():
     with open("history.txt") as f:
         lines = f.readlines()
@@ -102,12 +102,12 @@ r = sr.Recognizer()
 ans = 'yes'
 while ans != 'no':
     print(p.CYAN)
-    # talk("Welcome to The buzz-music player ")
-    # talk("Option 1 : add a new song ")
-    # talk("Option 2 : Play a song ")
-    # talk("option 3: go to previous song")
-    # talk("option 4: add song to favourite")
-    # talk("option 5:quit")
+    talk("Welcome to The buzz-music player ")
+    talk("Option 1 : add a new song ")
+    talk("Option 2 : Play a song ")
+    talk("option 3: go to previous song")
+    talk("option 4: add song to favourite")
+    talk("option 5:quit")
     print(p.WHITE)
     talk("Which option you want to choose :")
     audio = listen_speech()
